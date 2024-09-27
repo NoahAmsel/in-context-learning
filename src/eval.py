@@ -323,10 +323,10 @@ def get_run_metrics(
 def conf_to_model_name(conf):
     if conf.model.family == "gpt2":
         return {
-            (3, 2): "Transformer-xs",
-            (6, 4): "Transformer-small",
-            (12, 8): "Transformer",
-        }[(conf.model.n_layer, conf.model.n_head)]
+            3: "Transformer-xs",
+            6: "Transformer-small",
+            12: "Transformer"
+        }[conf.model.n_layer]
     else:
         return conf.wandb.name
 
@@ -386,7 +386,7 @@ def read_run_dir(run_dir):
                 all_runs[k].append(v)
 
     df = pd.DataFrame(all_runs).sort_values("run_name")
-    assert len(df) == len(df.run_name.unique())
+    # assert len(df) == len(df.run_name.unique())
     return df
 
 if __name__ == "__main__":

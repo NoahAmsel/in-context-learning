@@ -1,0 +1,26 @@
+inherit: 
+    - base.yaml
+
+model:
+    n_dims: 72
+    n_embd: 256
+    n_positions: 144
+
+training:
+    task: linear_regression
+    curriculum:
+        points:
+            start: 11
+            end: 144
+            inc: 2
+            interval: 2000
+        dims:
+            start: 5
+            end: 72
+            inc: 1
+            interval: 2000
+
+out_dir: /scratch/nia4240/garg-scratch/models/linear_regression
+
+wandb:
+    name: "high_dim_linear_regression"
